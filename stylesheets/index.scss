@@ -1,0 +1,13 @@
+$background-color: #eee;
+$text-color: #444;
+
+body {
+  background-color: $background-color;
+  color: $text-color;
+}
+
+@import 'reset';
+@import 'components/App';
+@import 'components/SearchForm';
+@import 'components/GeocodeResult';
+@import 'components/Map';
