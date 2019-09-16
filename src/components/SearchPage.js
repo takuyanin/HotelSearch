@@ -5,7 +5,7 @@ import { getDistance } from 'geolib';
 import _ from 'lodash';
 import queryString from 'query-string';
 
-import SearchForm from './SearchForm';
+import SearchForm from '../containers/SearchForm';
 // import GeocodeResult from './GeocodeResult';
 // import Map from './Map';
 // import HotelsTable from './HotelsTable';
@@ -32,10 +32,10 @@ class SearchPage extends Component {
   }
 
   componentDidMount() { // don't use 'setState' in componentDidMount
-    const place = this.getPlaceParams();
-    if (place) {
-      this.startSearch(place);
-    }
+    // const place = this.getPlaceParams();
+    // if (place) {
+    //   this.startSearch(place);
+    // }
   }
 
   getPlaceParams() {
@@ -55,11 +55,6 @@ class SearchPage extends Component {
         lng: 0,
       },
     });
-  }
-
-  handlePlaceChange(e) {
-    e.preventDefault();
-    this.props.onPlaceChange(e.target.value);
   }
 
   handlePlaceSubmit(e) {
@@ -132,8 +127,6 @@ class SearchPage extends Component {
       <div className='search-page'>
         <h1 className='app-title'>ホテル検索</h1>
         <SearchForm
-          place={this.props.place}
-          onPlaceChange={e => this.handlePlaceChange(e)}
           onSubmit={e => this.handlePlaceSubmit(e)}
         />
         {/* <div className='result-area'>
@@ -159,8 +152,6 @@ class SearchPage extends Component {
 SearchPage.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }).isRequired,
   location: PropTypes.shape({ search: PropTypes.string }).isRequired,
-  onPlaceChange: PropTypes.func.isRequired,
-  place: PropTypes.string.isRequired,
 };
 
 export default SearchPage;
