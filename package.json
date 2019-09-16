@@ -26,6 +26,7 @@
     "import-glob-loader": "^1.1.0",
     "lodash": "^4.17.15",
     "node-sass": "^4.9.3",
+    "query-string": "^6.8.3",
     "react": "^16.9.0",
     "react-addons-update": "^15.6.2",
     "react-bootstrap": "1.0.0-beta.10",
