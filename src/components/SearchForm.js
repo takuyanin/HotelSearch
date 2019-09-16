@@ -8,11 +8,11 @@ const SearchForm = props => (
       size='30'
       type='text'
       value={props.place}
-      onChange={e => props.onPlaceChange(e.target.value)}
+      onChange={e => props.onPlaceChange(e)}
     />
     <input className='submit-button' type='submit' value='検索' />
   </form>
-)
+);
 
 SearchForm.propTypes = {
   place: PropTypes.string.isRequired,
@@ -20,4 +20,4 @@ SearchForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default SearchForm
+export default SearchForm;

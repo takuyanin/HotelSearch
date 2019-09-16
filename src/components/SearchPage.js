@@ -6,11 +6,11 @@ import _ from 'lodash';
 import queryString from 'query-string';
 
 import SearchForm from './SearchForm';
-import GeocodeResult from './GeocodeResult';
-import Map from './Map';
-import HotelsTable from './HotelsTable';
+// import GeocodeResult from './GeocodeResult';
+// import Map from './Map';
+// import HotelsTable from './HotelsTable';
 import { geocode } from '../domain/Geocoder'
-import {RAKUTEN_APP_ID} from '../../.env.js'
+import { RAKUTEN_APP_ID } from '../../.env.js'
 
 const URL_BASE = 'https://app.rakuten.co.jp/services/api/Travel/';
 const SIMPLE_HOTEL_SEARCH_ENDPOINT = `${URL_BASE}SimpleHotelSearch/20170426`;
@@ -19,7 +19,7 @@ const sortedHotels = (hotels, sortKey) => _.sortBy(hotels, h => h[sortKey]);
 
 class SearchPage extends Component {
   constructor(props) {
-    console.log(props)
+    // console.log(props)
     super(props)
     this.state = {
       place: this.getPlaceParams() || '東京タワー',
@@ -57,8 +57,9 @@ class SearchPage extends Component {
     });
   }
 
-  handlePlaceChange(place) {
-    this.setState({ place });
+  handlePlaceChange(e) {
+    e.preventDefault();
+    this.props.onPlaceChange(e.target.value);
   }
 
   handlePlaceSubmit(e) {
@@ -131,11 +132,11 @@ class SearchPage extends Component {
       <div className='search-page'>
         <h1 className='app-title'>ホテル検索</h1>
         <SearchForm
-          place={this.state.place}
-          onPlaceChange={place => this.handlePlaceChange(place)}
+          place={this.props.place}
+          onPlaceChange={e => this.handlePlaceChange(e)}
           onSubmit={e => this.handlePlaceSubmit(e)}
         />
-        <div className='result-area'>
+        {/* <div className='result-area'>
           <Map location={this.state.location} />
           <div className='result-right'>
             <GeocodeResult
@@ -149,15 +150,17 @@ class SearchPage extends Component {
               onSort={sortKey => this.handleSortKeyChange(sortKey)}
             />
           </div>
-        </div>
+        </div> */}
       </div>
-    )
+    );
   }
 }
 
 SearchPage.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }).isRequired,
   location: PropTypes.shape({ search: PropTypes.string }).isRequired,
+  onPlaceChange: PropTypes.func.isRequired,
+  place: PropTypes.string.isRequired,
 };
 
 export default SearchPage;
