@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { getDistance } from 'geolib';
 import _ from 'lodash';
 import queryString from 'query-string';
 
@@ -11,20 +9,12 @@ import GeocodeResult from './GeocodeResult';
 import Map from './Map';
 // import HotelsTable from './HotelsTable';
 
-const URL_BASE = 'https://app.rakuten.co.jp/services/api/Travel/';
-const SIMPLE_HOTEL_SEARCH_ENDPOINT = `${URL_BASE}SimpleHotelSearch/20170426`;
-
 const sortedHotels = (hotels, sortKey) => _.sortBy(hotels, h => h[sortKey]);
 
 class SearchPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // place: this.getPlaceParams() || '東京タワー',
-      // location: {
-      //   lat: 35.6585805,
-      //   lng: 139.7454329,
-      // },
       sortKey: 'price',
     };
   }
