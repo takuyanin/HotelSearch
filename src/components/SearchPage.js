@@ -9,6 +9,7 @@ import GeocodeResult from './GeocodeResult';
 import Map from './Map';
 import HotelsTable from './HotelsTable';
 import { geocode } from '../domain/Geocoder'
+import {RAKUTEN_APP_ID} from '../../.env.js'
 
 const URL_BASE = 'https://app.rakuten.co.jp/services/api/Travel/';
 const SIMPLE_HOTEL_SEARCH_ENDPOINT = `${URL_BASE}SimpleHotelSearch/20170426`;

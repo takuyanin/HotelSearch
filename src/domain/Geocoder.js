@@ -1,5 +1,5 @@
 import axios from 'axios';
-import GEOCODE_API_KEY from '../../.env.js'
+import {GEOCODE_API_KEY} from '../../.env.js'
 
 const GEOCODE_ENDPOINT = 'https://maps.googleapis.com/maps/api/geocode/json';
 
