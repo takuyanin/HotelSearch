@@ -1,1 +1,3 @@
-# udemy_react
+# HotelSearch
+
+react-redux application
