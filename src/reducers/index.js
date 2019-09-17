@@ -22,11 +22,33 @@ const geocodeResult = (
         address: action.address,
         location: action.location,
       };
+    case 'CHANGE_ERROR_MESSAGE':
+      return {
+        address: action.message,
+        location: { lat: 0, lng: 0 },
+      };
     default:
       return state;
   }
 };
 
-export default combineReducers({ place, geocodeResult });
+const hotels = (state = [], action ) => {
+  switch (action.type) {
+    case 'CHANGE_HOTELS':
+      return action.hotels;
+    default:
+      return state;
+  }
+};
+
+const sortKey = (state = 'price', action ) => {
+  switch (action.type) {
+    case 'CHANGE_SORT_KEY':
+      return action.sortKey;
+    default:
+      return state;
+  }
+};
+export default combineReducers({ place, geocodeResult, hotels, sortKey });
 // the expression above is equal to the one below
 // export default combineReducers({ place: place, geocodeResult: geocodeResult });

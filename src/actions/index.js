@@ -7,6 +7,12 @@ const SIMPLE_HOTEL_SEARCH_ENDPOINT = `${URL_BASE}SimpleHotelSearch/20170426`;
 
 export const setPlace = place => dispatch => dispatch({ type: 'CHANGE_PLACE', place });
 
+export const setErrorMessage = message => dispatch => dispatch({ type: 'CHANGE_ERROR_MESSAGE', message});
+
+export const setHotels = hotels => dispatch => dispatch({ type: 'CHANGE_HOTELS', hotels});
+
+export const setSortKey = sortKey => dispatch => dispatch({ type: 'CHANGE_SORT_KEY', sortKey });
+
 export const startSearch = () => (dispatch, getState) => {
   geocode(getState().place)
     .then(({ status, address, location }) => {
@@ -38,23 +44,22 @@ export const startSearch = () => (dispatch, getState) => {
                   distance,
                 };
               })
-              // this.setState({ hotels: sortedHotels(hotels, this.state.sortKey) });
+              setHotels(hotels)
+              // dispatch(setHotels(hotels))
             });
           break;
         }
         case 'ZERO_RESULTS': {
-          // this.setErrorMessage('結果が見つかりませんでした');
+          dispatch(setErrorMessage('結果が見つかりませんでした'));
           break;
         }
         default: {
-          console.log(status)
-          // this.setErrorMessage('エラーが発生しました')
+          dispatch(setErrorMessage('エラーが発生しました'));
         }
       }
       return [];
     })
-    // .catch((error) => {
-    //   console.log(error)
-    //   this.setErrorMessage('通信に失敗しました')
-    // })
+    .catch(() => {
+      dispatch(setErrorMessage('通信に失敗しました'));
+    })
 };
