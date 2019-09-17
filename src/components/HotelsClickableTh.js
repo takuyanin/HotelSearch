@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { setSortKey } from '../actions'
+import { setSortKey } from '../actions/'
 
 const HotelsClickableTh = props => (
   <th

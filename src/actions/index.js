@@ -44,8 +44,7 @@ export const startSearch = () => (dispatch, getState) => {
                   distance,
                 };
               })
-              setHotels(hotels)
-              // dispatch(setHotels(hotels))
+              dispatch(setHotels(hotels))
             });
           break;
         }
